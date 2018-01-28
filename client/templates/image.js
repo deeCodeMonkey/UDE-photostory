@@ -14,11 +14,14 @@ Template.image.helpers({
 Template.image.events({
     'click .remove-image': function () {
         if (confirm ('Are you sure?')){
-            Images.remove(this._id);
+            //Images.remove(this._id);
 
-            //get if of image in order to delete
-            var ImageInfoId = ImageInfo.findOne({ imageId: this._id })._id;
-            ImageInfo.remove(ImageInfoId);
+            ////get if of image in order to delete
+            //var ImageInfoId = ImageInfo.findOne({ imageId: this._id })._id;
+            //ImageInfo.remove(ImageInfoId);
+            Meteor.call('deleteImage', this._id);
+            FlashMessages.sendSuccess('Image removed.');
         }
+        return false;
     }
 });

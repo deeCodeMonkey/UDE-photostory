@@ -5,24 +5,28 @@
         var title = event.target.title.value;
         var story = event.target.story.value;
 
-        try {
+        Meteor.call('addImageInfo', imageId, title, story);
 
-            ImageInfo.insert({
-                title,
-                story,
-                imageId,
-                imageUrl: '/cfs/files/Images/' + imageId,
-                userId: Meteor.userId(),
-                //twitter handle
-                username: Meteor.user().profile.name,
-                createdAt: new Date()
-            });
-            Modal.hide('add_info');
-            FlashMessages.sendSuccess('Image Info Added.');
+        //try {
 
-        } catch (exception) {
-            console.log(exception);
-        }
+        //    ImageInfo.insert({
+        //        title,
+        //        story,
+        //        imageId,
+        //        imageUrl: '/cfs/files/Images/' + imageId,
+        //        userId: Meteor.userId(),
+        //        //twitter handle
+        //        username: Meteor.user().profile.name,
+        //        createdAt: new Date()
+        //    });
+        //    Modal.hide('add_info');
+        //    FlashMessages.sendSuccess('Image Info Added.');
+
+        //} catch (exception) {
+        //    console.log(exception);
+        //}
+        Modal.hide('add_info');
+        FlashMessages.sendSuccess('Image Info Added.');
         return false;
     }
 });
